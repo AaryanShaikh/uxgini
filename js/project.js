@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".loading-center").style.display = "none"
         document.getElementById("pointer-ring").style.opacity = 1
         exeCode()
-    }, localStorage.getItem("siteVisited") == null ? 10 : 10) // 8010
+    }, localStorage.getItem("siteVisited") == null ? 8010 : 10) // 8010
 
     function exeCode() {
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
