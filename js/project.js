@@ -31,6 +31,43 @@ window.addEventListener('beforeunload', () => {
     localStorage.removeItem('navigatingWithinSite');
 });
 
+// Function to detect the OS
+function getOS() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    // Check for iOS
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "iOS";
+    }
+
+    // Check for Windows
+    if (/Windows/.test(userAgent)) {
+        return "Windows";
+    }
+
+    // Check for Android
+    if (/Android/.test(userAgent)) {
+        return "Android";
+    }
+
+    return "Other";
+}
+
+// Function to remove divs with class 'extras' if OS is iOS
+function handleExtras() {
+    const os = getOS();
+
+    if (os === "iOS"||os=="Windows") {
+        // Select all divs with the 'extras' class
+        const extrasDivs = document.querySelectorAll(".extras");
+        extrasDivs.forEach(div => {
+            div.remove(); // Remove the div
+        });
+    } else {
+        console.log("OS is not iOS, keeping the 'extras' divs.");
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
     // console.log("localstorage", localStorage.getItem("siteVisited"));
@@ -40,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".desktop-content").style.display = "block"
         document.querySelector(".loading-center").style.display = "none"
         document.getElementById("pointer-ring").style.opacity = 1
+        handleExtras()
         exeCode()
     }, localStorage.getItem("siteVisited") == null ? 8010 : 10) // 8010
 
@@ -189,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function changeTestimonial() {
             console.log("i was called");
-            
+
             currTestimonial = (currTestimonial + 1) % allTestimonials.length;
             videoUrl.src = allTestimonials[currTestimonial];
             videoUrl.parentElement.load();
@@ -218,33 +256,33 @@ document.addEventListener("DOMContentLoaded", function () {
         testimonialNxtBtnMob.addEventListener("touchstart", changeTestimonial, { capture: true });
         testimonialNxtBtnMob.addEventListener("click", changeTestimonial);
 
-        function changeTestimonialBack(){
+        function changeTestimonialBack() {
             currTestimonial =
-            (currTestimonial - 1 + allTestimonials.length) % allTestimonials.length;
-        videoUrl.src = allTestimonials[currTestimonial];
-        videoUrl.parentElement.load();
-        isplaying = false
-        document.querySelectorAll(".testimonial-btn").forEach((el, index) => {
-            el.classList.toggle("btn-active", index === 1);
-        });
-        document.querySelectorAll(".testimonial-description").forEach((el, index) => {
-            el.classList.toggle("testimonial-active", index === currTestimonial);
-        });
-        gsap.to(".testimonial-name", {
-            duration: 1,
-            text: {
-                value: allTestimonialsName[currTestimonial].name,
-            }
-        })
-        gsap.to(".testimonial-work", {
-            duration: 1,
-            text: {
-                value: allTestimonialsName[currTestimonial].work,
-            }
-        })
+                (currTestimonial - 1 + allTestimonials.length) % allTestimonials.length;
+            videoUrl.src = allTestimonials[currTestimonial];
+            videoUrl.parentElement.load();
+            isplaying = false
+            document.querySelectorAll(".testimonial-btn").forEach((el, index) => {
+                el.classList.toggle("btn-active", index === 1);
+            });
+            document.querySelectorAll(".testimonial-description").forEach((el, index) => {
+                el.classList.toggle("testimonial-active", index === currTestimonial);
+            });
+            gsap.to(".testimonial-name", {
+                duration: 1,
+                text: {
+                    value: allTestimonialsName[currTestimonial].name,
+                }
+            })
+            gsap.to(".testimonial-work", {
+                duration: 1,
+                text: {
+                    value: allTestimonialsName[currTestimonial].work,
+                }
+            })
         }
 
-        testimonialPrevBtn.addEventListener("click",changeTestimonialBack);
+        testimonialPrevBtn.addEventListener("click", changeTestimonialBack);
         testimonialPrevBtnMob.addEventListener("touchstart", changeTestimonialBack, { capture: true });
         testimonialPrevBtnMob.addEventListener("click", changeTestimonialBack);
 
@@ -261,6 +299,55 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
         })
+
+        // #region contact form
+        const formspreeURL = "https://formspree.io/f/xgvezekb";
+        let contactBtn = document.querySelector("#contact-btn");
+
+        contactBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            // Collect data from input fields
+            const name = document.querySelector("#name").value.trim();
+            const email = document.querySelector("#email").value.trim();
+            const message = document.querySelector("#message").value.trim();
+
+            // Basic validation
+            if (!name || !email || !message) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            // Email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            // Data to send to Formspree
+            const formData = { name, email, message };
+
+            // Send the data to Formspree
+            fetch(formspreeURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        alert("Form submitted successfully!");
+                    } else {
+                        alert("Form submission failed.");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("There was an error submitting the form.");
+                });
+        });
     }
 
     // #region process
