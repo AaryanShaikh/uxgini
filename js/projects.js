@@ -5,9 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const bodyWidth = body.offsetWidth;
     const bodyHeight = body.offsetHeight;
 
-    console.log(`Body width: ${bodyWidth}px`);
-    console.log(`Body height: ${bodyHeight}px`);
-
     document.getElementById("pointer-ring").style.opacity = 1
     gsap.registerPlugin(ScrollTrigger);
 
@@ -36,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let path = svg.querySelector("path")
 
     const pathLength = path.getTotalLength()
-    console.log("pathLength", pathLength);
 
     gsap.set(path, {
         strokeDasharray: pathLength,

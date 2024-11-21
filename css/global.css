@@ -37,6 +37,7 @@ body {
   --color-midnightblue: rgba(46, 2, 73, 0.3);
   --color-white: #fff;
   --yellow: #ffb100;
+  --primary-color:#EDE8D0;
 
   /* Gaps */
   --gap-5xs: 8px;

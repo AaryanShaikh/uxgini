@@ -57,14 +57,14 @@ function getOS() {
 function handleExtras() {
     const os = getOS();
 
-    if (os === "iOS"||os=="Windows") {
+    if (os === "iOS" || os == "Windows") {
         // Select all divs with the 'extras' class
         const extrasDivs = document.querySelectorAll(".extras");
         extrasDivs.forEach(div => {
             div.remove(); // Remove the div
         });
     } else {
-        console.log("OS is not iOS, keeping the 'extras' divs.");
+        // console.log("OS is not iOS, keeping the 'extras' divs.");
     }
 }
 
@@ -181,14 +181,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // #region testimonials
-        gsap.to(".testimonials", {
-            scrollTrigger: {
-                trigger: ".testimonials",
-                start: "top top",
-                end: "+=50%",
-                pin: true
-            }
-        })
+        // gsap.to(".testimonials", {
+        //     scrollTrigger: {
+        //         trigger: ".testimonials",
+        //         start: "top top",
+        //         end: "+=10%",
+        //         pin: true
+        //     }
+        // })
         let isplaying = false;
         let btn = document.querySelector(".play-button");
         let video = document.querySelector("#testimonial-video");
@@ -226,7 +226,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         function changeTestimonial() {
-            console.log("i was called");
 
             currTestimonial = (currTestimonial + 1) % allTestimonials.length;
             videoUrl.src = allTestimonials[currTestimonial];
@@ -253,7 +252,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         testimonialNxtBtn.addEventListener("click", changeTestimonial);
-        testimonialNxtBtnMob.addEventListener("touchstart", changeTestimonial, { capture: true });
         testimonialNxtBtnMob.addEventListener("click", changeTestimonial);
 
         function changeTestimonialBack() {
@@ -283,13 +281,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         testimonialPrevBtn.addEventListener("click", changeTestimonialBack);
-        testimonialPrevBtnMob.addEventListener("touchstart", changeTestimonialBack, { capture: true });
         testimonialPrevBtnMob.addEventListener("click", changeTestimonialBack);
 
         // #region Page Transition
         let project_btn = document.querySelector(".projects-link")
+        let project_btn_mob = document.querySelector(".projects-link-mob")
 
-        project_btn.addEventListener("click", async () => {
+        async function pageTransition() {
             gsap.to(".page-transition", {
                 duration: 2,
                 clipPath: 'circle(150% at 50% 100%)',
@@ -298,7 +296,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     window.location.href = 'projects.html';
                 }
             })
-        })
+        }
+
+        project_btn.addEventListener("click", pageTransition)
+        project_btn_mob.addEventListener("click", pageTransition)
 
         // #region contact form
         const formspreeURL = "https://formspree.io/f/xgvezekb";
@@ -314,14 +315,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Basic validation
             if (!name || !email || !message) {
-                alert("Please fill in all fields.");
+                console.log("Please fill in all fields.");
                 return;
             }
 
             // Email validation regex
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                alert("Please enter a valid email address.");
+                console.log("Please enter a valid email address.");
                 return;
             }
 
@@ -338,15 +339,31 @@ document.addEventListener("DOMContentLoaded", function () {
             })
                 .then((response) => {
                     if (response.ok) {
-                        alert("Form submitted successfully!");
+                        console.log("Form submitted successfully!");
                     } else {
-                        alert("Form submission failed.");
+                        console.log("Form submission failed.");
                     }
                 })
                 .catch((error) => {
                     console.error("Error:", error);
-                    alert("There was an error submitting the form.");
+                    console.log("There was an error submitting the form.");
                 });
+        });
+
+        // #region hamburger
+        let hamBtn = document.querySelector(".hamburger")
+        let hamContainer = document.querySelector(".ham-container")
+        hamBtn.addEventListener("click", () => {
+            hamContainer.classList.toggle("show-menu");
+            hamBtn.classList.toggle("is-active")
+        })
+
+        let navLinks = document.querySelectorAll(".mob-nav a");
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                hamContainer.classList.remove("show-menu"); // Ensure the menu closes
+                hamBtn.classList.remove("is-active"); // Reset the hamburger icon state
+            });
         });
     }
 
