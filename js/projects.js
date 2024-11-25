@@ -18,15 +18,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // #region page transition
     gsap.to(".page-transition", {
-        duration: 2,
+        duration: 1,
         clipPath: 'circle(0% at 50% 0%)',
         ease: "expo.in",
     })
 
     // #region redirect to home
-    document.querySelector(".home-nav").addEventListener("click", () => {
-        window.location.href = 'index.html';
-    })
+    // document.querySelector(".home-nav").addEventListener("click", () => {
+    //     window.location.href = 'index.html';
+    // })
 
     // #region line animation
     let svg = document.querySelector(".line")
@@ -50,5 +50,21 @@ document.addEventListener("DOMContentLoaded", function () {
             scrub: 1
         }
     })
+
+      // #region hamburger
+      let hamBtn = document.querySelector(".hamburger")
+      let hamContainer = document.querySelector(".ham-container")
+      hamBtn.addEventListener("click", () => {
+          hamContainer.classList.toggle("show-menu");
+          hamBtn.classList.toggle("is-active")
+      })
+
+      let navLinks = document.querySelectorAll(".mob-nav a");
+      navLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+              hamContainer.classList.remove("show-menu"); // Ensure the menu closes
+              hamBtn.classList.remove("is-active"); // Reset the hamburger icon state
+          });
+      });
 
 })

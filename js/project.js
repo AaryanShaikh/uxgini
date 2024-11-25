@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("pointer-ring").style.opacity = 1
         handleExtras()
         exeCode()
-    }, localStorage.getItem("siteVisited") == null ? 8010 : 10) // 8010
+    }, localStorage.getItem("siteVisited") == null ? 10 : 10) // 8010
 
     function exeCode() {
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -92,12 +92,48 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         gsap.ticker.lagSmoothing(0);
 
-        // #region projects
+
         const body = document.body;
         const bodyWidth = body.offsetWidth;
 
+        // #region process words
+        const processBlocks = document.querySelectorAll(".process-block")
+
+        const wrapWords = (descElement) => {
+            const textContent = descElement.innerText;
+            const words = textContent.split(" ");
+            descElement.innerHTML = words.map(word => `<span class="process-desc-word">${word}&nbsp;</span>`).join("");
+        }
+
+        const animateText = (descElement) => {
+            anime({
+                targets: descElement.querySelectorAll('.process-desc-word'),
+                opacity: [0, 1],
+                translateY: [20, 0],
+                easing: 'easeOutExpo',
+                animation: 50,
+                delay: anime.stagger(20)
+            });
+        }
+
+        processBlocks.forEach((block) => {
+            const descElement = block.querySelector(".desc")
+            wrapWords(descElement)
+
+            const observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    if (mutation.attributeName === "class" && block.classList.contains("active")) {
+                        animateText(descElement);
+                    }
+                });
+            });
+
+            observer.observe(block, { attributes: true });
+        })
+
         if (bodyWidth < 700) {
-            const totalScrollHeight = document.querySelector(".projects-mobile").offsetHeight * 4;
+            // #region projects
+            const totalScrollHeight = document.querySelector(".projects-mobile").offsetHeight * 2;
             const cards = document.querySelector(".cards-mobile");
             const totalScrollWidth = cards.scrollWidth - document.querySelector(".projects-mobile").offsetWidth;
 
@@ -114,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
             });
         } else {
-            const totalScrollHeight = window.innerHeight * 4;
+            const totalScrollHeight = window.innerHeight * 2;
             const cards = document.querySelector(".cards");
             const totalScrollWidth = cards.scrollWidth - window.innerWidth;
 
@@ -135,10 +171,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // #region Hero section
-        gsap.from(".txt-uxgini", { y: 70, opacity: 0, duration: 1, delay: 0.2 })
-        gsap.from([".namaste", ".hero-left-column"], { x: -70, opacity: 0, duration: 1, delay: 0.3, stagger: 0.1 })
-        gsap.from(".lets-talk-btn", { opacity: 0, duration: 1, delay: 1.4 })
-        gsap.from(".hero-right-column", { x: 70, opacity: 0, duration: 1, delay: 0.5 })
+        gsap.from(".heading h1", { y: 70, opacity: 0, duration: 1, delay: 0.2 })
+        gsap.from([".title h1"], { x: -70, opacity: 0, duration: 1, delay: 0.3, stagger: 0.1 })
+        gsap.from(".hero-mob .title div", { opacity: 0, duration: 1, delay: .9 })
+        gsap.from([".hero-mob .hero-desc h1", ".hero-mob .hero-desc p"], { x: 70, opacity: 0, duration: 1, delay: 0.5, stagger: 0.2 })
         gsap.from(".header-nav-list-item", { y: 70, opacity: 0, duration: 1, delay: 0.5, stagger: 0.2 })
         gsap.from(".header-request-btn", { y: 50, opacity: 0, duration: 1, delay: 0.5 })
         gsap.from(".hero-img", { opacity: 0, duration: 1, delay: 0.5 })
@@ -162,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
         gsap.from('.process-heading', {
             scrollTrigger: {
                 trigger: ".process-heading",
-                start: "top bottom",
+                start: "top +=10",
                 once: true
             },
             y: 100,
@@ -289,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         async function pageTransition() {
             gsap.to(".page-transition", {
-                duration: 2,
+                duration: 1,
                 clipPath: 'circle(150% at 50% 100%)',
                 ease: "expo.out",
                 onComplete: () => {
@@ -374,69 +410,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (bodyWidth < 700) {
         ScrollTrigger.normalizeScroll(true);
-        gsap.from(".process-content-progress", {
+        gsap.from(".process-content-mob", {
             scrollTrigger: {
                 trigger: ".process",
                 start: "top top",
                 pin: true,
                 scrub: true,
-                end: "+=150%",
+                end: "+=250%",
                 normalizeScroll: true,
                 onUpdate: (self) => {
                     const progress = self.progress;
                     const numTitles = 5;
                     const activeIndex = Math.floor(progress * numTitles);
 
-                    document.querySelectorAll(".process-content-title > div").forEach((el, index) => {
+                    document.querySelectorAll(".process-block").forEach((el, index) => {
                         el.classList.toggle("active", index === activeIndex);
                     });
-                    document.querySelectorAll(".process-content-description-text").forEach((el, index) => {
-                        el.classList.toggle("text-active", index === activeIndex);
-                    });
-
                 },
-                onLeave: () => {
-                    document.querySelector(".process-content-progress").style.opacity = 0
-                },
-                onEnterBack: () => {
-                    document.querySelector(".process-content-progress").style.opacity = 1
-                }
             },
-            scaleX: 0,
             ease: "none",
-            transformOrigin: "left center",
         })
     } else {
-        gsap.from(".process-content-progress", {
+        gsap.from(".process-content-mob", {
             scrollTrigger: {
                 trigger: ".process",
                 start: "top top",
                 pin: true,
                 scrub: true,
-                end: "+=200%",
+                end: "+=250%",
                 onUpdate: (self) => {
                     const progress = self.progress;
                     const numTitles = 5;
                     const activeIndex = Math.floor(progress * numTitles);
 
-                    document.querySelectorAll(".process-content-title > div").forEach((el, index) => {
+                    document.querySelectorAll(".process-block").forEach((el, index) => {
                         el.classList.toggle("active", index === activeIndex);
                     });
-                    document.querySelectorAll(".process-content-description-text").forEach((el, index) => {
-                        el.classList.toggle("text-active", index === activeIndex);
-                    });
-
                 },
-                onLeave: () => {
-                    document.querySelector(".process-content-progress").style.opacity = 0
-                },
-                onEnterBack: () => {
-                    document.querySelector(".process-content-progress").style.opacity = 1
-                }
             },
-            scaleY: 0,
             ease: "none",
-            transformOrigin: "top center",
         })
     }
 
