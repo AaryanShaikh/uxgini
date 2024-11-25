@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
         gsap.from('.process-heading', {
             scrollTrigger: {
                 trigger: ".process-heading",
-                start: "top +=10",
+                start: "top bottom",
                 once: true
             },
             y: 100,

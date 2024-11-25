@@ -887,8 +887,8 @@ footer .footer-content-container .all-rights-reserved {
 }
 
 .process-heading {
-  text-align: center;
-  margin: 1rem 0;
+  /* text-align: center; */
+  margin: 2rem 0 2rem 5rem;
   font-family: var(--font-inknut-antiqua);
   color: #89375f;
 }
@@ -1343,7 +1343,7 @@ header {
   }
 
   .process-heading h1 {
-    font-size: 2.5rem;
+    font-size: 1.7rem;
   }
 
   .process-content {
@@ -1370,7 +1370,6 @@ header {
     display: flex;
     transition: .5s ease-in-out;
     position: relative;
-    border-top: 1px solid #00000030;
     padding: 0 1.5rem;
   }
 
