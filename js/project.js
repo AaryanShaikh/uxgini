@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("pointer-ring").style.opacity = 1
         handleExtras()
         exeCode()
-    }, localStorage.getItem("siteVisited") == null ? 8010 : 10) // 8010
+    }, localStorage.getItem("siteVisited") == null ? 10 : 10) // 8010
 
     function exeCode() {
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 intensity2: 0.1,
                 image1: imgs[0].getAttribute('src'),
                 image2: imgs[1].getAttribute('src'),
-                displacementImage: '../assets/displacement.png'
+                displacementImage: '../assets/disp.png'
             });
         })
 
