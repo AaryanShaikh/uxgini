@@ -188,6 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 parent: e,
                 intensity1: 0.2,
                 intensity2: 0.1,
+                angle:90,
                 image1: imgs[0].getAttribute('src'),
                 image2: imgs[1].getAttribute('src'),
                 displacementImage: '../assets/disp.png'
