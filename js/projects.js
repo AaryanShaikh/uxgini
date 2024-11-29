@@ -9,7 +9,17 @@ document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(ScrollTrigger);
 
     // #region Smooth scroll
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+        duration: 1.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+        direction: 'vertical', // vertical, horizontal
+        gestureDirection: 'vertical', // vertical, horizontal, both
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+      })
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
@@ -51,20 +61,37 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 
-      // #region hamburger
-      let hamBtn = document.querySelector(".hamburger")
-      let hamContainer = document.querySelector(".ham-container")
-      hamBtn.addEventListener("click", () => {
-          hamContainer.classList.toggle("show-menu");
-          hamBtn.classList.toggle("is-active")
-      })
+    // #region hamburger
+    let hamBtn = document.querySelector(".hamburger")
+    let hamContainer = document.querySelector(".ham-container")
+    hamBtn.addEventListener("click", () => {
+        hamContainer.classList.toggle("show-menu");
+        hamBtn.classList.toggle("is-active")
+    })
 
-      let navLinks = document.querySelectorAll(".mob-nav a");
-      navLinks.forEach((link) => {
-          link.addEventListener("click", () => {
-              hamContainer.classList.remove("show-menu"); // Ensure the menu closes
-              hamBtn.classList.remove("is-active"); // Reset the hamburger icon state
-          });
-      });
+    let navLinks = document.querySelectorAll(".mob-nav a");
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            hamContainer.classList.remove("show-menu"); // Ensure the menu closes
+            hamBtn.classList.remove("is-active"); // Reset the hamburger icon state
+        });
+    });
+
+    let projects = document.querySelectorAll(".box")
+    if (bodyWidth <= 800) {
+        projects.forEach((ele, ind) => {
+            gsap.from(ele, {
+                x: ind % 2 == 0 ? 100 : -100,
+                opacity: 0,
+                ease: "power1.out",
+                duration: 1,
+                scrollTrigger: {
+                    trigger: ele,
+                    start: "start 80%",
+                    once: true
+                },
+            })
+        })
+    }
 
 })

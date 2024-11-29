@@ -85,7 +85,17 @@ document.addEventListener("DOMContentLoaded", function () {
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
         // #region Smooth scroll
-        const lenis = new Lenis();
+        const lenis = new Lenis({
+            duration: 1.5,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+            direction: 'vertical', // vertical, horizontal
+            gestureDirection: 'vertical', // vertical, horizontal, both
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+          })
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => {
             lenis.raf(time * 1000);
@@ -133,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (bodyWidth < 700) {
             // #region projects
-            const totalScrollHeight = document.querySelector(".projects-mobile").offsetHeight * 2;
+            const totalScrollHeight = document.querySelector(".projects-mobile").offsetHeight * 4;
             const cards = document.querySelector(".cards-mobile");
             const totalScrollWidth = cards.scrollWidth - document.querySelector(".projects-mobile").offsetWidth;
 
@@ -150,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
             });
         } else {
-            const totalScrollHeight = window.innerHeight * 2;
+            const totalScrollHeight = window.innerHeight * 4;
             const cards = document.querySelector(".cards");
             const totalScrollWidth = cards.scrollWidth - window.innerWidth;
 
@@ -188,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 parent: e,
                 intensity1: 0.2,
                 intensity2: 0.1,
-                angle:90,
+                angle: 90,
                 image1: imgs[0].getAttribute('src'),
                 image2: imgs[1].getAttribute('src'),
                 displacementImage: '../assets/disp.png'
@@ -241,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "../assets/test3.mp4",
         ];
         let allTestimonialsName = [
-            { name: "Sairaj Ghadge.", work: "Musician at Rhythm and Souls" },
+            { name: "Sairaj Ghadge.", work: "Founder of Rhythm and Souls" },
             { name: "Ruben Rodrigues.", work: "Food Blooger aka Mr. Kurkurit" },
             { name: "Chirag Warang.", work: "Member of Arena Animation Goa" },
         ];

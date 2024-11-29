@@ -4,6 +4,15 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--primary-color);
+  width: 100%;
+  background-image: url("../assets/noise.png");
+  background-position: 50%;
+  background-size: 220px;
+  background-attachment: fixed;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -451,5 +460,13 @@ svg.line path {
     z-index: 1;
     width: 30px;
     height: 30px;
+  }
+
+  .container .box .imgBx img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    position: absolute;
+    transition: .2s ease-in-out;
   }
 }
