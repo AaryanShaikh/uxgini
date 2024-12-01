@@ -65,8 +65,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let hamBtn = document.querySelector(".hamburger")
     let hamContainer = document.querySelector(".ham-container")
     hamBtn.addEventListener("click", () => {
-        hamContainer.classList.toggle("show-menu");
         hamBtn.classList.toggle("is-active")
+        if (hamBtn.classList.contains("is-active")) {
+            hamContainer.style.backdropFilter = "brightness(0.5)"
+        } else {
+            hamContainer.style.backdropFilter = "brightness(1)"
+        }
     })
 
     let navLinks = document.querySelectorAll(".mob-nav a");
@@ -74,6 +78,11 @@ document.addEventListener("DOMContentLoaded", function () {
         link.addEventListener("click", () => {
             hamContainer.classList.remove("show-menu"); // Ensure the menu closes
             hamBtn.classList.remove("is-active"); // Reset the hamburger icon state
+            if (hamBtn.classList.contains("is-active")) {
+                hamContainer.style.backdropFilter = "brightness(0.5)"
+            } else {
+                hamContainer.style.backdropFilter = "brightness(1)"
+            }
         });
     });
 

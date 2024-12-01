@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("pointer-ring").style.opacity = 1
         handleExtras()
         exeCode()
-    }, localStorage.getItem("siteVisited") == null ? 8010 : 10) // 8010
+    }, localStorage.getItem("siteVisited") == null ? 10 : 10) // 8010
 
     function exeCode() {
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
             smoothTouch: false,
             touchMultiplier: 2,
             infinite: false,
-          })
+        })
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => {
             lenis.raf(time * 1000);
@@ -187,8 +187,6 @@ document.addEventListener("DOMContentLoaded", function () {
         gsap.from([".hero-mob .hero-desc h1", ".hero-mob .hero-desc p"], { x: 70, opacity: 0, duration: 1, delay: 0.5, stagger: 0.2 })
         gsap.from(".header-nav-list-item", { y: 70, opacity: 0, duration: 1, delay: 0.5, stagger: 0.2 })
         gsap.from(".header-request-btn", { y: 50, opacity: 0, duration: 1, delay: 0.5 })
-        gsap.from(".hero-img", { opacity: 0, duration: 1, delay: 0.5 })
-        gsap.from(".hero-container", { backgroundSize: 0, duration: .5, })
 
         // #region Hero Img
 
@@ -196,12 +194,11 @@ document.addEventListener("DOMContentLoaded", function () {
             const imgs = Array.from(e.querySelectorAll('img'));
             new hoverEffect({
                 parent: e,
-                intensity1: 0.2,
-                intensity2: 0.1,
+                intensity: 0.3,
                 angle: 90,
-                image1: imgs[0].getAttribute('src'),
-                image2: imgs[1].getAttribute('src'),
-                displacementImage: '../assets/disp.png'
+                image1: imgs[1].getAttribute('src'),
+                image2: imgs[0].getAttribute('src'),
+                displacementImage: '../assets/displacement.png'
             });
         })
 
@@ -246,11 +243,13 @@ document.addEventListener("DOMContentLoaded", function () {
         let testimonialPrevBtnMob = document.querySelector("#testimonial-prev-btn-mob");
         let currTestimonial = 0;
         let allTestimonials = [
+            "../assets/test4.mp4",
             "../assets/test1.mp4",
             "../assets/test2.mp4",
             "../assets/test3.mp4",
         ];
         let allTestimonialsName = [
+            { name: "Shridatt Zambodkar.", work: "C.E.O of Intuio Software Labs" },
             { name: "Sairaj Ghadge.", work: "Founder of Rhythm and Souls" },
             { name: "Ruben Rodrigues.", work: "Food Blooger aka Mr. Kurkurit" },
             { name: "Chirag Warang.", work: "Member of Arena Animation Goa" },
@@ -341,6 +340,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 ease: "expo.out",
                 onComplete: () => {
                     window.location.href = 'projects.html';
+                    gsap.to(".page-transition", {
+                        duration: 1,
+                        clipPath: 'circle(0% at 50% 100%)',
+                        ease: "none",
+                    })
                 }
             })
         }
@@ -401,8 +405,12 @@ document.addEventListener("DOMContentLoaded", function () {
         let hamBtn = document.querySelector(".hamburger")
         let hamContainer = document.querySelector(".ham-container")
         hamBtn.addEventListener("click", () => {
-            hamContainer.classList.toggle("show-menu");
             hamBtn.classList.toggle("is-active")
+            if (hamBtn.classList.contains("is-active")) {
+                hamContainer.style.backdropFilter = "brightness(0.5)"
+            } else {
+                hamContainer.style.backdropFilter = "brightness(1)"
+            }
         })
 
         let navLinks = document.querySelectorAll(".mob-nav a");
@@ -410,9 +418,91 @@ document.addEventListener("DOMContentLoaded", function () {
             link.addEventListener("click", () => {
                 hamContainer.classList.remove("show-menu"); // Ensure the menu closes
                 hamBtn.classList.remove("is-active"); // Reset the hamburger icon state
+                if (hamBtn.classList.contains("is-active")) {
+                    hamContainer.style.backdropFilter = "brightness(0.5)"
+                } else {
+                    hamContainer.style.backdropFilter = "brightness(1)"
+                }
             });
         });
-    }
+
+        // #region bonus
+        const bonusItems = document.querySelectorAll(".bonus-item")
+
+        bonusItems.forEach((item) => {
+            const video = item.querySelector("video")
+            item.addEventListener("click", () => {
+                if (!video.paused) {
+                    video.pause()
+                    item.querySelector(".bonus-item-controls-pause").style.display = "none"
+                    item.querySelector(".bonus-item-controls-play").style.display = "block"
+                } else {
+                    bonusItems.forEach((otherItem) => {
+                        const otherVideo = otherItem.querySelector("video")
+                        if (!otherVideo.paused) {
+                            otherVideo.pause();
+                            otherVideo.currentTime = 0;
+                            otherItem.querySelector(".bonus-item-controls-pause").style.display = "none"
+                            otherItem.querySelector(".bonus-item-controls-play").style.display = "block"
+                        }
+                    })
+                    video.play()
+                    item.querySelector(".bonus-item-controls-pause").style.display = "block"
+                    item.querySelector(".bonus-item-controls-play").style.display = "none"
+                }
+            })
+        })
+
+        let currentIndex = 0;
+        document.querySelector(".slider-left").addEventListener("click", () => {
+            if (currentIndex > 0) {
+                currentIndex--
+                const offset = -currentIndex * 40;
+                document.querySelector("#slider").style.transform = `translateX(${offset}%)`;
+            }
+        })
+        document.querySelector(".slider-right").addEventListener("click", () => {
+            if (currentIndex < 4) {
+                currentIndex++
+                const offset = -currentIndex * 40;
+                document.querySelector("#slider").style.transform = `translateX(${offset}%)`;
+            }
+        })
+
+        // #region resume
+
+        document.querySelector('.resume-link').addEventListener('click', function () {
+            document.querySelector(".resume-container").style.display = "flex"
+            const url = "../assets/aaryan-resume.pdf";
+
+            const loadingTask = pdfjsLib.getDocument(url);
+            loadingTask.promise.then(function (pdf) {
+
+                // Fetch the first page
+                pdf.getPage(1).then(function (page) {
+
+                    const scale = 1.5;  // Adjust scale as needed
+                    const viewport = page.getViewport({ scale: scale });
+
+                    // Prepare canvas using PDF page dimensions
+                    const canvas = document.createElement('canvas');
+                    document.querySelector('.resume-container').appendChild(canvas);
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+                    page.render(renderContext);
+                });
+            }).catch(function (error) {
+                console.error('Error loading PDF:', error);
+            });
+        });
+
+    } // everthing above this
 
     // #region process
 

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 ::-webkit-scrollbar{
   display: none;
 }
@@ -9,6 +10,8 @@
   --font-inknut-antiqua: "Inknut Antiqua";
   --font-simonetta: Simonetta;
   --font-poppins: Poppins;
+  --font-secondary: "Raleway", sans-serif;
+  --line-height:165.9%;
 
   /* font sizes */
   --paragraph-size: 16px;
