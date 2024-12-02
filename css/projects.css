@@ -98,7 +98,6 @@ body {
   justify-content: center;
   align-items: flex-end;
   border-radius: 20px;
-  background: #d995b6;
   overflow: hidden;
 }
 
@@ -122,23 +121,48 @@ body {
   transition: .2s ease-in-out;
 }
 
-.container .box .imgBx img:nth-child(2) {
-  opacity: 1;
-}
-
 .container .box .imgBx img:nth-child(1) {
-  opacity: 0;
+  opacity: 1;
 }
 
 .container .box .contentBx {
   position: absolute;
   transform: translateZ(20px) scaleY(1);
-  padding: 40px 25px;
+  padding: 2.5rem;
   transform-origin: top;
   transition: 0.5s;
   transform-style: preserve-3d;
   opacity: 0;
   background: #fff;
+  background-image: url("../assets/noise.png");
+  background-size: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  gap: 1.5rem;
+  overflow: scroll;
+}
+
+.container .box .contentBx div h2 {
+  font-family: var(--font-secondary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-palevioletred);
+}
+
+.container .box .contentBx div p {
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  color: var(--color-gray-200);
+}
+
+.container .box .contentBx div ul {
+  list-style: disc;
+  margin: 0;
+  padding: 0 1rem;
+  color: var(--color-gray-200);
 }
 
 .container .box:hover {
@@ -150,16 +174,8 @@ body {
   opacity: 1;
 }
 
-.container .box:hover .imgBx {
-  filter: blur(0px);
-}
-
 .container .box:hover .imgBx img:nth-child(2) {
   opacity: 0;
-}
-
-.container .box:hover .imgBx img:nth-child(1) {
-  opacity: 0.5;
 }
 
 /* Projects End */
@@ -388,7 +404,79 @@ svg.line path {
   display: none;
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                       Header                                                       */
+/* ------------------------------------------------------------------------------------------------------------------ */
+header {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+  position: relative;
+}
+
+.header-nav-list-item {
+  padding: 0 20px;
+  font-family: var(--font-secondary);
+  color: var(--color-gray-200);
+}
+
+.header-nav-list-item a {
+  text-decoration: none;
+  color: var(--color-gray-200);
+}
+
+.header-nav-list-item :is(a, .projects-link, .resume-link):hover {
+  color: var(--color-palevioletred);
+}
+
+.header-nav-list {
+  list-style-type: none;
+  text-align: center;
+  font-size: var(--paragraph-size);
+  color: var(--color-gray-100);
+  display: flex;
+}
+
+.header-request-btn {
+  font-size: var(--font-size-smi);
+  font-family: var(--font-inknut-antiqua);
+  line-height: 22px;
+  text-transform: capitalize;
+  color: var(--color-gray-200);
+  text-align: justify;
+  background-color: var(--primary-color);
+  box-sizing: border-box;
+  border-radius: var(--br-3xs);
+  border: 1px solid var(--color-gray-200);
+  padding: 10px 20px;
+  margin: 0 2rem;
+  text-decoration: none;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                     Header End                                                     */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                   Mobile Version                                                   */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 @media (max-width: 800px) {
+  .header-nav {
+    display: none;
+  }
+
+  header a {
+    margin-left: 1rem;
+  }
+
+  header {
+    margin-top: 1rem;
+    display: none;
+  }
+
   .main-title h1 {
     font-size: 2rem;
   }
@@ -504,8 +592,34 @@ svg.line path {
   .container .box .imgBx img {
     height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
     position: absolute;
     transition: .2s ease-in-out;
   }
+
+  .container .box .contentBx {
+    padding: 1.5rem;
+  }
+
+  .container .box .contentBx div h2 {
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .container .box .contentBx div p {
+    font-family: var(--font-secondary);
+    font-size: .75rem;
+  }
+
+  .container .box .contentBx div ul {
+    list-style: disc;
+    margin: 0;
+    padding: 0 1rem;
+    font-size: .75rem;
+  }
 }
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                 Mobile Version End                                                 */
+/* ------------------------------------------------------------------------------------------------------------------ */

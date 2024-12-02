@@ -4,12 +4,7 @@
 }
 
 :root {
-  /* fonts */
-  --paragraph: "Open Sans";
-  --font-inter: Inter;
   --font-inknut-antiqua: "Inknut Antiqua";
-  --font-simonetta: Simonetta;
-  --font-poppins: Poppins;
   --font-secondary: "Raleway", sans-serif;
   --line-height:165.9%;
 

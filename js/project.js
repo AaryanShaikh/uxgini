@@ -68,6 +68,14 @@ function handleExtras() {
     }
 }
 
+function checkWidthAndReload() {
+    if (document.body.clientWidth < 800) {
+        location.reload();  
+    }
+}
+
+window.addEventListener('resize', checkWidthAndReload);
+
 document.addEventListener("DOMContentLoaded", function () {
 
     // console.log("localstorage", localStorage.getItem("siteVisited"));
