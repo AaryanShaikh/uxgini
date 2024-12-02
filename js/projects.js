@@ -51,9 +51,13 @@ const dataSrc = [
     }
 ]
 
+let lastWidthState = document.body.clientWidth < 800 ? 'small' : 'large';
+
 function checkWidthAndReload() {
-    if (document.body.clientWidth < 800) {
-        location.reload();  
+    const currentWidthState = document.body.clientWidth < 800 ? 'small' : 'large';
+    if (currentWidthState !== lastWidthState) {
+        location.reload();
+        lastWidthState = currentWidthState;
     }
 }
 
@@ -89,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // #region page transition
     gsap.to(".page-transition", {
-        duration: 1,
+        duration: .5,
         clipPath: 'circle(0% at 50% 0%)',
         ease: "expo.in",
     })

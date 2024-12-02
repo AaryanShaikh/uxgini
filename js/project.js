@@ -343,7 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         async function pageTransition() {
             gsap.to(".page-transition", {
-                duration: 1,
+                duration: .5,
                 clipPath: 'circle(150% at 50% 100%)',
                 ease: "expo.out",
                 onComplete: () => {
