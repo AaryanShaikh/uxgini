@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("pointer-ring").style.opacity = 1
         handleExtras()
         exeCode()
-    }, localStorage.getItem("siteVisited") == null ? 10 : 10) // 8010
+    }, localStorage.getItem("siteVisited") == null ? 8010 : 10) // 8010
 
     function exeCode() {
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
