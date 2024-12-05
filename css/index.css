@@ -938,7 +938,9 @@ footer .footer-content-container .all-rights-reserved {
 
 /* loader section end */
 
-/* process section */
+/* -------------------------------------------------------------------------------------------------------- */
+/*                                                  Process                                                 */
+/* -------------------------------------------------------------------------------------------------------- */
 
 .process {
   height: 100dvh;
@@ -1017,9 +1019,10 @@ footer .footer-content-container .all-rights-reserved {
   display: flex;
   align-items: center;
   font-size: 1.875rem;
-  font-family: var(--font-inknut-antiqua);
+  font-family: var(--font-secondary);
   color: var(--color-palevioletred);
   transition: .4s ease-out;
+  font-weight: 600;
 }
 
 .process-content-mob .process-block .desc {
@@ -1036,7 +1039,9 @@ footer .footer-content-container .all-rights-reserved {
   line-height: var(--line-height);
 }
 
-/* process section end */
+/* -------------------------------------------------------------------------------------------------------- */
+/*                                                Process End                                               */
+/* -------------------------------------------------------------------------------------------------------- */
 
 .project-content-desc,
 .project-content-header,
@@ -1353,7 +1358,7 @@ header {
   position: relative;
 }
 
-.bonus-content .bottom :is(.left-content, .right-content) .bonus-item video {
+.bonus-content .bottom :is(.left-content, .right-content) .bonus-item img {
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -1938,6 +1943,7 @@ header {
     display: flex;
     gap: 1rem;
     transition: .3s ease;
+    height: 50%;
   }
 
   .bonus-mob .bonus-content .bottom .left-content .bonus-item {

@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("pointer-ring").style.opacity = 1
         handleExtras()
         exeCode()
-    }, localStorage.getItem("siteVisited") == null ? 8010 : 10) // 8010
+    }, localStorage.getItem("siteVisited") == null ? 10 : 10) // 8010
 
     function exeCode() {
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (bodyWidth < 700) {
             // #region projects
-            const totalScrollHeight = document.querySelector(".projects-mobile").offsetHeight * 4;
+            const totalScrollHeight = document.querySelector(".projects-mobile").offsetHeight * 3;
             const cards = document.querySelector(".cards-mobile");
             const totalScrollWidth = cards.scrollWidth - document.querySelector(".projects-mobile").offsetWidth;
 
@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
             });
         } else {
-            const totalScrollHeight = window.innerHeight * 4;
+            const totalScrollHeight = window.innerHeight * 3;
             const cards = document.querySelector(".cards");
             const totalScrollWidth = cards.scrollWidth - window.innerWidth;
 
@@ -361,11 +361,25 @@ document.addEventListener("DOMContentLoaded", function () {
         project_btn_mob.addEventListener("click", pageTransition)
 
         // #region contact form
-        const formspreeURL = "https://formspree.io/f/xgvezekb";
+        const formspreeURL = "https://formspree.io/f/xzzbwzdo";
         let contactBtn = document.querySelector("#contact-btn");
 
         contactBtn.addEventListener("click", (e) => {
             e.preventDefault();
+
+            contactBtn.textContent = 'Sent!';
+
+            // Disable the button
+            contactBtn.disabled = true;
+        
+            // Set a timeout to re-enable the button after 2 seconds
+            setTimeout(function() {
+              // Change text back to "Send"
+              contactBtn.textContent = 'Send';
+              
+              // Enable the button
+              contactBtn.disabled = false;
+            }, 2000);
 
             // Collect data from input fields
             const name = document.querySelector("#name").value.trim();
@@ -435,31 +449,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // #region bonus
-        const bonusItems = document.querySelectorAll(".bonus-item")
-
-        bonusItems.forEach((item) => {
-            const video = item.querySelector("video")
-            item.addEventListener("click", () => {
-                if (!video.paused) {
-                    video.pause()
-                    item.querySelector(".bonus-item-controls-pause").style.display = "none"
-                    item.querySelector(".bonus-item-controls-play").style.display = "block"
-                } else {
-                    bonusItems.forEach((otherItem) => {
-                        const otherVideo = otherItem.querySelector("video")
-                        if (!otherVideo.paused) {
-                            otherVideo.pause();
-                            otherVideo.currentTime = 0;
-                            otherItem.querySelector(".bonus-item-controls-pause").style.display = "none"
-                            otherItem.querySelector(".bonus-item-controls-play").style.display = "block"
-                        }
-                    })
-                    video.play()
-                    item.querySelector(".bonus-item-controls-pause").style.display = "block"
-                    item.querySelector(".bonus-item-controls-play").style.display = "none"
-                }
-            })
-        })
 
         let currentIndex = 0;
         document.querySelector(".slider-left").addEventListener("click", () => {
@@ -479,36 +468,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // #region resume
 
-        document.querySelector('.resume-link').addEventListener('click', function () {
-            document.querySelector(".resume-container").style.display = "flex"
-            const url = "../assets/aaryan-resume.pdf";
-
-            const loadingTask = pdfjsLib.getDocument(url);
-            loadingTask.promise.then(function (pdf) {
-
-                // Fetch the first page
-                pdf.getPage(1).then(function (page) {
-
-                    const scale = 1.5;  // Adjust scale as needed
-                    const viewport = page.getViewport({ scale: scale });
-
-                    // Prepare canvas using PDF page dimensions
-                    const canvas = document.createElement('canvas');
-                    document.querySelector('.resume-container').appendChild(canvas);
-                    const context = canvas.getContext('2d');
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-
-                    const renderContext = {
-                        canvasContext: context,
-                        viewport: viewport
-                    };
-                    page.render(renderContext);
-                });
-            }).catch(function (error) {
-                console.error('Error loading PDF:', error);
-            });
-        });
 
     } // everthing above this
 
@@ -516,6 +475,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const body = document.body;
     const bodyWidth = body.offsetWidth;
+    const processBlocks = document.querySelectorAll('.process-block');
 
     if (bodyWidth < 700) {
         ScrollTrigger.normalizeScroll(true);
@@ -539,6 +499,22 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             ease: "none",
         })
+        processBlocks.forEach(block => {
+            const title = block.querySelector('.title').innerText.trim();
+            const desc = block.querySelector('.desc');
+    
+            if (title === 'Empathize') {
+              desc.innerHTML = 'I immerse in users’ world through interviews, surveys, and competitor analysis to uncover needs, building empathy for design.';
+            } else if (title === 'Define') {
+              desc.innerHTML = 'I synthesize insights into user personas, journey maps, and goals, creating actionable steps to guide the design process.';
+            } else if (title === 'Ideate') {
+              desc.innerHTML = 'I foster creativity through brainstorming, sketching, and mind mapping to explore diverse design solutions and organize user flows.';
+            } else if (title === 'Design') {
+              desc.innerHTML = 'I transform ideas into wireframes and prototypes, focusing on typography, color, and visual hierarchy for effective, polished designs.';
+            } else if (title === 'Test') {
+              desc.innerHTML = 'I refine designs through A/B testing, usability surveys, and user feedback, ensuring the design meets expectations and needs.';
+            }
+          });
     } else {
         gsap.from(".process-content-mob", {
             scrollTrigger: {
@@ -559,6 +535,22 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             ease: "none",
         })
+        processBlocks.forEach(block => {
+            const title = block.querySelector('.title').innerText.trim();
+            const desc = block.querySelector('.desc');
+    
+            if (title === 'Empathize') {
+              desc.innerHTML = 'I immerse myself in the user’s world through interviews, surveys, focus groups, and competitor analysis to understand their needs and pain points, building empathy as the foundation of user-centered design';
+            } else if (title === 'Define') {
+              desc.innerHTML = 'Using insights from the Empathize phase, I define the problem and project goals, creating user personas, empathy maps, and journey maps to turn data into clear, actionable insights that guide the design process.';
+            } else if (title === 'Ideate') {
+              desc.innerHTML = 'In the Ideate phase, I foster creativity and collaboration through brainstorming, mind mapping, card sorting, user flows, information architecture, and sketching to explore diverse design possibilities';
+            } else if (title === 'Design') {
+              desc.innerHTML = 'In the Design phase, I turn selected ideas into paper wireframes and high-fidelity prototypes using tools like Figma. I focus on details like typography, color schemes, and visual hierarchy to create polished, effective designs.';
+            } else if (title === 'Test') {
+              desc.innerHTML = 'Testing is a continuous part of the design process. I use methods like A/B testing, usability surveys, and eye-tracking to gather user feedback and data, ensuring the design meets user needs and expectations.';
+            }
+          });
     }
 
 
