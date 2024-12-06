@@ -252,10 +252,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let testimonialPrevBtnMob = document.querySelector("#testimonial-prev-btn-mob");
         let currTestimonial = 0;
         let allTestimonials = [
-            "../assets/test4.mp4",
-            "../assets/test1.mp4",
-            "../assets/test2.mp4",
-            "../assets/test3.mp4",
+            "../assets/test4.webm",
+            "../assets/test1.webm",
+            "../assets/test2.webm",
+            "../assets/test3.webm",
         ];
         let allTestimonialsName = [
             { name: "Shridatt Zambodkar.", work: "C.E.O of Intuio Software Labs" },

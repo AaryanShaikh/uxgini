@@ -33,3 +33,9 @@ html {
 a {
     cursor: none !important;
 }
+
+@media (max-width: 800px) {
+    #pointer-dot,#pointer-ring{
+        display: none;
+    }
+}
