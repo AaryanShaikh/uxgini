@@ -915,7 +915,7 @@ footer .footer-content-container .all-rights-reserved {
   stroke: #89375f;
   stroke-dasharray: 1030;
   stroke-dashoffset: 1030;
-  animation: textAnimation 8s ease-in-out 1 forwards;
+  animation: textAnimation 3s ease-in-out 1 forwards;
 }
 
 @keyframes textAnimation {
@@ -1048,6 +1048,10 @@ footer .footer-content-container .all-rights-reserved {
 .project-content-page {
   font-family: var(--font-secondary);
   line-height: var(--line-height);
+}
+
+.project-content-desc{
+  font-size: 2vh;
 }
 
 .project-content-header {
@@ -1615,7 +1619,7 @@ header {
     display: flex;
     align-items: center;
     font-size: 1.5rem;
-    font-family: var(--font-inknut-antiqua);
+    font-family: var(--font-secondary);
     color: var(--color-palevioletred);
     transition: .4s ease-out;
   }

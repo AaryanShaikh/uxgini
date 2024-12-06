@@ -1,67 +1,68 @@
 // #region all projects data
 const dataSrc = [
     {
-        "imgSrc": "../assets/projects/pet-product-store.png",
-        "imgSrcMob": "../assets/projects/pet-mob.png",
-        "title": "Pentalooza – Pet Shopping Platform",
-        "desc": "A POC e-commerce website for pet owners to buy food, clothing, and pharmacy items conveniently.",
-        "prob": "<ul><li>Pet owners often face challenges finding all their pet-related products on a single platform.</li><li> Pentalooza eliminated this problem by centralizing diverse product categories, streamlining the shopping process, and creating a user-friendly interface that saves time and effort.</li>"
+        "imgSrc": "../assets/lead-CRM.webp",
+        "imgSrcMob": "../assets/lead-mob (1).webp",
+        "title": "Lead CRM",
+        "desc": "A CRM platform that simplifies lead management with tools for campaign creation, buyer-supplier communication, and a feature-rich marketplace.",
+        "prob": "<ul><li>Designed a seamless signup and setup process with industry vertical and lead type selection, reducing setup time and improving user onboarding.</li><li>Enabled users to create, edit, and track campaigns effortlessly, solving the problem of disorganized campaign data.</li><li>Added a built-in DocuSign feature, resolving the hassle of managing contracts and agreements externally.</li></ul>"
     },
     {
-        "imgSrc": "../assets/projects/grocery-store.png",
-        "imgSrcMob": "../assets/projects/grocery-mob.png",
-        "title": "Superstore – Online Grocery Shopping App",
-        "desc": "An app designed for shopping fresh and organic groceries with doorstep delivery.",
-        "prob": "Traditional grocery shopping is time-consuming and often lacks customization options. The app resolved these issues by:<br/><ul><li>Allowing users to customize quantities and preferences for their orders.</li><li>Simplifying order tracking to reduce uncertainty in deliveries.</li></ul>"
-    },
-    {
-        "imgSrc": "../assets/projects/quotation.png",
-        "imgSrcMob": "../assets/projects/quotation-mob.png",
-        "title": "Quotation Management App",
-        "desc": "An app enabling automobile dealerships to generate, manage, and share quotations efficiently.",
-        "prob": "Manual quotation processes are prone to errors, delays, and inefficiency. This app:<br/><ul><li>Replaced error-prone manual workflows with automated features for generating and sharing quotations.</li><li>Solved the issue of inconsistent branding by allowing document customization (signatures, company profiles).</li><li>Simplified product search and storage for quicker access during high-demand periods.</li></ul>"
-    },
-    {
-        "imgSrc": "../assets/projects/microwave.png",
-        "imgSrcMob": "../assets/projects/micro-mob.png",
-        "title": "Smart Microwave Interface Design",
-        "desc": "A smart microwave interface enabling personalized cooking experiences with smart device integration.",
-        "prob": "<ul><li>Simplified cooking by introducing personalized recipe suggestions and multi-profile support for families.</li><li>Eliminated the guesswork of cooking times through video guides and smart recommendations.</li><li>Enhanced connectivity with Alexa and Wi-Fi, making smart home integration seamless.</li></ul>"
-    },
-    {
-        "imgSrc": "../assets/projects/coaching.png",
-        "imgSrcMob": "../assets/projects/coach-mob.png",
-        "title": "Coaching App",
-        "desc": "A platform for small-time coaches to manage communication, resources, and payments efficiently.",
-        "prob": "Coaches struggled with disorganized tools like WhatsApp and Excel, leading to communication and payment tracking inefficiencies. The app:<ul><li>Replaced scattered tools with a single platform for real-time messaging and resource sharing.</li><li>Solved late payment issues through automated reminders and tracking systems.</li><li>Organized training content in a centralized library, reducing time spent searching for materials.</li></ul>"
-    },
-    {
-        "imgSrc": "../assets/projects/Relay-app.png",
-        "imgSrcMob": "../assets/projects/relay-mob.png",
+        "imgSrc": "../assets/Relay-app.webp",
+        "imgSrcMob": "../assets/relay-mob (1).webp",
         "title": "Relay App",
         "desc": "A mobile app connecting relay race participants with compatible teammates.",
         "prob": "Finding teammates with matching goals and performance metrics for relay races was a tedious, manual process. The app:<ul><li>Automated teammate searches by matching participants based on shared goals, pace, and stamina.</li><li>Solved compatibility issues through performance tracking and clear profile management.</li><li>Streamlined the team formation process, allowing participants to focus on training and coordination.</li></ul>"
     },
     {
-        "imgSrc": "../assets/projects/lead-CRM.png",
-        "imgSrcMob": "../assets/projects/lead-mob.png",
-        "title": "Lead CRM",
-        "desc": "A CRM platform that simplifies lead management with tools for campaign creation, buyer-supplier communication, and a feature-rich marketplace.",
-        "prob": "Designed a seamless signup and setup process with industry vertical and lead type selection, reducing setup time and improving user onboarding.<br/>Enabled users to create, edit, and track campaigns effortlessly, solving the problem of disorganized campaign data.<br/>Added a built-in DocuSign feature, resolving the hassle of managing contracts and agreements externally."
+        "imgSrc": "../assets/pet-product-store.webp",
+        "imgSrcMob": "../assets/pet-mob (1).webp",
+        "title": "Pentalooza – Pet Shopping Platform",
+        "desc": "A POC e-commerce website for pet owners to buy food, clothing, and pharmacy items conveniently.",
+        "prob": "Pet owners often face challenges finding all their pet-related products on a single platform.<ul><li> Pentalooza eliminated this problem by centralizing diverse product categories, streamlining the shopping process, and creating a user-friendly interface that saves time and effort.</li>"
     },
     {
-        "imgSrc": "../assets/projects/faizaan.png",
-        "imgSrcMob": "../assets/projects/faizaan-mob.png",
+        "imgSrc": "../assets/grocery-store.webp",
+        "imgSrcMob": "../assets/grocery-mob (1).webp",
+        "title": "Superstore – Online Grocery Shopping App",
+        "desc": "An app designed for shopping fresh and organic groceries with doorstep delivery.",
+        "prob": "Traditional grocery shopping is time-consuming and often lacks customization options. The app resolved these issues by:<br/><ul><li>Allowing users to customize quantities and preferences for their orders.</li><li>Simplifying order tracking to reduce uncertainty in deliveries.</li></ul>"
+    },
+    {
+        "imgSrc": "../assets/quotation (1).webp",
+        "imgSrcMob": "../assets/quotation-mob (1).webp",
+        "title": "Quotation Management App",
+        "desc": "An app enabling automobile dealerships to generate, manage, and share quotations efficiently.",
+        "prob": "Manual quotation processes are prone to errors, delays, and inefficiency. This app:<br/><ul><li>Replaced error-prone manual tasks with automated tools to create and share quotations.</li><li>Solved the issue of inconsistent branding by allowing document customization (signatures, company profiles).</li><li>Simplified product search and storage for quicker access during high-demand periods.</li></ul>"
+    },
+    {
+        "imgSrc": "../assets/microwave.webp",
+        "imgSrcMob": "../assets/micro-mob (1).webp",
+        "title": "Smart Microwave Interface Design",
+        "desc": "A smart microwave interface enabling personalized cooking experiences with smart device integration.",
+        "prob": "<ul><li>Simplified cooking by introducing personalized recipe suggestions and multi-profile support for families.</li><li>Eliminated the guesswork of cooking times through video guides and smart recommendations.</li><li>Enhanced connectivity with Alexa and Wi-Fi, making smart home integration seamless.</li></ul>"
+    },
+    {
+        "imgSrc": "../assets/coaching (1).webp",
+        "imgSrcMob": "../assets/coach-mob.webp",
+        "title": "Coaching App",
+        "desc": "A platform for small-time coaches to manage communication, resources, and payments efficiently.",
+        "prob": "Coaches struggled with disorganized tools, leading to communication and payment tracking inefficiencies. The app:<ul><li>Replaced scattered tools with a single platform for real-time messaging and resource sharing.</li><li>Solved late payment issues through automated reminders and tracking systems.</li><li>Organized training content in a centralized library, reducing time spent searching for materials.</li></ul>"
+    },
+
+    {
+        "imgSrc": "../assets/faizaan (1).webp",
+        "imgSrcMob": "../assets/faizaan-mob (1).webp",
         "title": "Faizaan",
-        "desc": "Faizaan’s portfolio website is designed to showcase his expertise and passion for fitness, strength training, and physical transformation. It serves as a platform for potential clients to explore his training services and philosophy.",
-        "prob": "Finding a skilled and approachable gym trainer can be overwhelming for many fitness enthusiasts. Faizaan’s portfolio website solves this by:<br/><ul><li>Clearly outlining his experience and training methods to help clients understand his approach to fitness.</li><li>Added a built-in DocuSign feature, resolving the hassle of managing contracts and agreements externally.</li></ul>"
+        "desc": "Faizaan’s portfolio website is designed to showcase his expertise and passion for fitness, strength training, and physical transformation. It serves as a platform for potential clients to explore his training services.",
+        "prob": "Finding a good and friendly gym trainer can be hard.The website explains Faizaan’s experience and training style so clients can understand his approach."
     },
     {
-        "imgSrc": "../assets/projects/sharda.png",
-        "imgSrcMob": "../assets/projects/sharda-mob.png",
+        "imgSrc": "../assets/sharda.webp",
+        "imgSrcMob": "../assets/sharda-mob.webp",
         "title": "Sharda Liquor Store",
         "desc": "Sharda Liquor Store is an Indian-based website showcasing an extensive range of liquors. Designed for a Goan clientele, the platform serves as a digital catalog for customers to explore premium alcoholic beverages from various brands.",
-        "prob": "Finding a comprehensive selection of liquors in one place can often be challenging. Sharda Liquor Store addresses this by:<br/><ul><li>Categorizing liquors into well-defined sections, such as spirits, wines, beers, and more, making the browsing process quick and effortless.</li><li>Added a built-in DocuSign feature, resolving the hassle of managing contracts and agreements externally.</li></ul>"
+        "prob": "<ul><li>It’s not always easy to find a wide variety of liquors in one place.Organizing liquors into clear sections like spirits, wines, beers, and more, making it easy and fast to browse.</li><li>Featuring dedicated pages for top-rated and most popular liquors to guide customers in making informed choices.</li></ul>"
     },
 ]
 
