@@ -15,6 +15,16 @@ body {
   font-family: var(--font-secondary);
 }
 
+.scroll-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  border-top: 1px solid var(--color-palevioletred);
+  border-bottom: 1px solid var(--color-palevioletred);
+
+}
+
 /* ------------------------------------------------------------------------------------------------------------------ */
 /*                                                      hamburger                                                     */
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -187,12 +197,26 @@ body {
   text-decoration: none;
 }
 
+header a:hover {
+  color: var(--color-palevioletred);
+}
+
+header {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* ------------------------------------------------------------------------------------------------------------------ */
 /*                                                     Header End                                                     */
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-.hero {
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                        Hero                                                        */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
+.hero {
   height: 90vh;
   position: relative;
 }
@@ -298,7 +322,6 @@ body {
   right: -51px;
   bottom: 54px;
   text-align: center;
-
 }
 
 .hero .hero-right-column .hero-desc-text {
@@ -309,94 +332,39 @@ body {
   font-family: var(--font-secondary);
   color: var(--color-gray-200);
   display: inline-block;
-
 }
 
-.my-process {
+.hero-img {
   position: relative;
-  margin-top: 100px;
-  height: 650px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  margin-bottom: 140px;
-}
-
-.my-process .my-process-container {
-  max-width: 1500px;
-  margin: auto;
-  position: relative;
-}
-
-.my-process .my-process-title {
-  font-size: var(--font-size-21xl);
-  color: var(--color-palevioletred);
-  font-family: var(--font-inknut-antiqua);
-  position: absolute;
-  top: 170px;
+  width: 360px;
+  height: 360px;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0);
-
+  transform: translate(-50%, -50%);
 }
 
-
-.my-process .my-process-item-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  max-width: 650px;
-  margin: auto;
-
-}
-
-#demo {
+.hero-img img {
   position: absolute;
-  top: 300px;
-  left: 50%;
-  transform: translate(-50%, 0);
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 250px;
+  height: 100%;
+  object-fit: cover;
+  display: none;
 }
 
-.my-process .my-process-item-container .my-process-item-number {
-  font-size: var(--font-size-13xl);
-  color: var(--color-black);
-  /* font-family: var(--font-simonetta); */
+.hero-img canvas {
+  border-radius: 50%;
+  border: 1px solid var(--color-palevioletred);
 }
 
-.my-process .my-process-item-container .my-process-item-title {
-  font-family: var(--font-inknut-antiqua);
-  font-size: var(--font-size-13xl);
+.hero-mob {
+  display: none;
 }
 
-.my-process .my-process-item-container .my-process-item-body {
-
-  font-size: var(--font-size-sm);
-  line-height: 22px;
-  max-width: 900px;
-  color: var(--color-palevioletred);
-  text-align: justify;
-  /* font-family: var(--font-inter); */
-
-}
-
-.my-process .my-process-item-container .my-process-item-body-bold {
-  font-weight: 500;
-  color: var(--color-palevioletred);
-}
-
-.carousel-control-prev[disabled],
-.carousel-control-next[disabled] {
-  display: none !important;
-  /* Hide disabled buttons */
-}
-
-#demo .carousel-indicators button {
-  background-color: var(--color-palevioletred);
-  /* Set your desired background color */
-}
-
-
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                      Hero End                                                      */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 /*                                                     Soft Skills                                                    */
@@ -413,37 +381,16 @@ body {
   margin: auto;
 }
 
-.soft-skills .soft-skills-title {
-  font-size: var(--font-size-21xl);
-  color: var(--color-palevioletred);
-  font-family: var(--font-inknut-antiqua);
-  margin-left: 150px;
-  margin-bottom: 50px;
-}
-
-/* Add styles for the container and list */
-.scroll-container {
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-  border-top: 1px solid var(--color-palevioletred);
-  border-bottom: 1px solid var(--color-palevioletred);
-
-}
-
 .soft-skills-list {
   display: inline-flex;
   list-style: none;
   padding: 0;
   margin: 0;
   animation: scrollList 25s linear infinite reverse;
-  /* Adjust duration as needed */
   box-sizing: content-box;
   position: relative;
 }
 
-/* Define a keyframe animation for scrolling */
 @keyframes scrollList {
   0% {
     transform: translateX(0%);
@@ -454,32 +401,21 @@ body {
   }
 }
 
-
 .soft-skills .soft-skills-list-item {
   font-size: 1rem;
   color: var(--color-palevioletred);
-  flex-basis: auto;
-  /* Adjust flex-basis for item spacing */
   font-family: var(--font-inknut-antiqua);
   padding: 1.5rem 0;
   margin: 0 20px;
-  /* Adjust margin for spacing between items */
   width: fit-content;
   display: inline-flex;
   list-style: none;
   position: relative;
 }
 
-.soft-skills .soft-skills-list-item svg{
+.soft-skills .soft-skills-list-item svg {
   height: 20px;
   width: 20px;
-}
-
-.soft-skills .soft-skills-list-item .list-item-bullet {
-  border-radius: 50%;
-  background-color: var(--color-gray-200);
-  width: 25px;
-  height: 25px;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -502,21 +438,6 @@ body {
   position: relative;
 }
 
-.hard-skills .hard-skills-container {
-  position: relative;
-  max-width: 1500px;
-  margin: auto;
-
-}
-
-.hard-skills .hard-skills-title {
-  font-size: var(--font-size-21xl);
-  color: var(--color-palevioletred);
-  font-family: var(--font-inknut-antiqua);
-  margin-left: 150px;
-  margin-bottom: 50px;
-}
-
 .hard-skills .hard-skills-list {
   display: inline-flex;
   list-style: none;
@@ -525,18 +446,15 @@ body {
   animation: scrollList 25s linear infinite;
   box-sizing: content-box;
   position: relative;
-
 }
 
 .hard-skills .hard-skills-list-item {
   font-size: 1rem;
   color: var(--color-palevioletred);
   flex-basis: auto;
-  /* Adjust flex-basis for item spacing */
   font-family: var(--font-inknut-antiqua);
   padding: 2rem 0;
   margin: 0 20px;
-  /* Adjust margin for spacing between items */
   width: fit-content;
   display: inline-flex;
   list-style: none;
@@ -550,6 +468,10 @@ body {
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 /*                                                   Hard Skills End                                                  */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                        About                                                       */
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 .about {
@@ -611,173 +533,13 @@ body {
   margin: 2rem 0;
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                      About End                                                     */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-.client-reviews {
-  margin: 80px 0;
-}
-
-.client-reviews .client-reviews-title {
-  font-size: var(--font-size-21xl);
-  color: var(--color-palevioletred);
-  font-family: var(--font-inknut-antiqua);
-  text-align: center;
-
-}
-
-.client-reviews .client-review-card {
-  border-radius: var(--br-18xl);
-  background: linear-gradient(180deg, #ddcdff, #ebd5ff);
-  width: 1082px;
-  margin: auto;
-  height: 495px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-}
-
-.client-reviews .client-review-card .center-content .client-video {
-  border-radius: var(--br-xl);
-  background-color: var(--color-linen);
-  /* box-shadow: -10px -10px 20px #fff, 10px 10px 20px rgba(174, 174, 192, 0.4); */
-  height: 433px;
-}
-
-.client-reviews .client-review-card .nav-btn {
-  color: white;
-  font-size: 40px;
-}
-
-.client-reviews .client-review-card .center-content {
-  display: flex;
-  padding: 45px;
-  width: 900px;
-}
-
-.client-reviews .client-review-card .carousel-item {
-  display: flex;
-  width: 800px;
-
-
-}
-
-.client-reviews .client-review-card .center-content .client-text {
-  width: 380px;
-  margin-left: 40px;
-}
-
-.client-reviews .client-review-card .center-content .client-text .client-name {
-  font-size: var(--font-size-13xl);
-  font-family: var(--font-inknut-antiqua);
-  margin-top: 90px;
-
-}
-
-.client-reviews .client-review-card .center-content .client-text .client-brand {
-  font-family: var(--font-inknut-antiqua);
-}
-
-.client-reviews .client-review-card .center-content .client-text .client-review {
-  font-size: var(--font-size-sm);
-  /* font-family: var(--font-inter); */
-  color: #580a30;
-  margin-top: 50px;
-}
-
-.connect .connect-container {
-  display: flex;
-  max-width: 1500px;
-  margin: auto;
-}
-
-.connect .connect-title {
-  font-size: var(--font-size-21xl);
-  color: var(--color-palevioletred);
-  font-family: var(--font-inknut-antiqua);
-  margin-left: 150px;
-  position: absolute;
-}
-
-.connect .connect-form-container {
-  width: 50%;
-  margin-top: 100px;
-}
-
-.connect .connect-form-container form {
-  font-size: var(--font-size-xl);
-  color: var(--color-midnightblue);
-  /* font-family: var(--font-poppins); */
-
-}
-
-
-.connect .connect-form-container form div {
-  width: 90%;
-  margin: auto;
-  margin-left: 100px
-}
-
-
-.connect .connect-form-container form input {
-  width: 90%;
-  margin: auto;
-  margin-bottom: 30px;
-  border: 0;
-  background-color: var(--color-whitesmoke);
-  border-bottom: 1px solid var(--color-midnightblue);
-  ;
-}
-
-.connect .connect-form-container form input[type="submit"] {
-  border-radius: 30px;
-  background: linear-gradient(214.02deg, #c175fd, #8856e4);
-  display: flex;
-  flex-direction: row;
-  padding: var(--padding-xl) var(--padding-21xl);
-  align-items: center;
-  justify-content: flex-start;
-  gap: var(--gap-3xs);
-  font-size: var(--font-size-xl);
-  color: var(--color-white);
-  /* font-family: var(--font-poppins); */
-  width: 230px;
-  margin-left: 100px
-}
-
-.connect .connect-links {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.connect .connect-links .connect-links-list {
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  color: var(--color-palevioletred);
-  font-size: 40px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-}
-
-.connect .connect-form-container form input:focus,
-textarea:focus {
-  outline: none;
-  border: none;
-  border-bottom: 1px solid var(--color-palevioletred);
-}
-
-
-
-
-.connect .connect-links .connect-links-list li {
-  margin: 0 20px;
-}
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                       Footer                                                       */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 footer {
   width: 100%;
@@ -785,7 +547,7 @@ footer {
   background-color: var(--primary-color);
   display: flex;
   align-items: center;
-  border-top: 1px solid rgba(0,0,0,0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 footer .footer-content-container {
@@ -799,18 +561,17 @@ footer .footer-content-container {
 }
 
 footer .footer-content-container .copyright {
-  margin-left: 100px
+  margin-left: 100px;
 }
 
 footer .footer-content-container .all-rights-reserved {
-  margin-right: 100px
+  margin-right: 100px;
 }
 
-#mobile-message {
-  display: none;
-}
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                      Projects                                                      */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-/* projects section */
 .container {
   width: 100%;
   height: 100%;
@@ -861,36 +622,29 @@ footer .footer-content-container .all-rights-reserved {
   font-weight: 500;
 }
 
-/* projects section end */
-
-/* home img section */
-.hero-img {
-  position: relative;
-  width: 360px;
-  height: 360px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.project-content-desc,
+.project-content-header,
+.project-content-page {
+  font-family: var(--font-secondary);
+  line-height: var(--line-height);
 }
 
-.hero-img img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: none;
+.project-content-desc {
+  font-size: 2vh;
 }
 
-.hero-img canvas {
-  border-radius: 50%;
-  border: 1px solid var(--color-palevioletred);
+.project-content-header {
+  font-size: 1.688rem;
 }
 
-/* home img section end */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                    Projects End                                                    */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-/* loader section */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                       Loader                                                       */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 .desktop-content {
   display: none;
 }
@@ -936,11 +690,13 @@ footer .footer-content-container .all-rights-reserved {
   }
 }
 
-/* loader section end */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                     Loader End                                                     */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-/* -------------------------------------------------------------------------------------------------------- */
-/*                                                  Process                                                 */
-/* -------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                       Process                                                      */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 .process {
   height: 100dvh;
@@ -951,7 +707,6 @@ footer .footer-content-container .all-rights-reserved {
 }
 
 .process-heading {
-  /* text-align: center; */
   margin: 2rem 0 2rem 10rem;
   color: #89375f;
 }
@@ -985,7 +740,6 @@ footer .footer-content-container .all-rights-reserved {
   display: flex;
   transition: .5s ease-in-out;
   position: relative;
-  /* border-top: 1px solid #00000030; */
   padding: 0 10rem;
 }
 
@@ -1005,7 +759,6 @@ footer .footer-content-container .all-rights-reserved {
 }
 
 .process-content-mob .process-block.active .title {
-  /* color: #e791bb; */
   color: var(--color-gray-200);
   z-index: 1;
 }
@@ -1039,26 +792,14 @@ footer .footer-content-container .all-rights-reserved {
   line-height: var(--line-height);
 }
 
-/* -------------------------------------------------------------------------------------------------------- */
-/*                                                Process End                                               */
-/* -------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                     Process End                                                    */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-.project-content-desc,
-.project-content-header,
-.project-content-page {
-  font-family: var(--font-secondary);
-  line-height: var(--line-height);
-}
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                     Testimonial                                                    */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-.project-content-desc{
-  font-size: 2vh;
-}
-
-.project-content-header {
-  font-size: 1.688rem;
-}
-
-/* testimonials section */
 .testimonial-description-container {
   position: relative;
   height: 12rem;
@@ -1127,9 +868,14 @@ footer .footer-content-container .all-rights-reserved {
   opacity: 1;
 }
 
-/* testimonials section end */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                   Testmonial End                                                   */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-/* Page Transition */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                   Page Transition                                                  */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 .page-transition {
   position: fixed;
   background-color: #580a30;
@@ -1142,20 +888,14 @@ footer .footer-content-container .all-rights-reserved {
   clip-path: circle(0% at 50% 100%);
 }
 
-/* Page Transition end */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                 Page Transition End                                                */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-header a:hover {
-  color: var(--color-palevioletred);
-}
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                       Contact                                                      */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-header {
-  margin-top: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* contact */
 .contact {
   height: calc(100vh - 75px);
   padding: 1rem 5rem;
@@ -1207,6 +947,7 @@ header {
   outline: none;
   -webkit-appearance: none;
   box-shadow: none;
+  appearance: none;
 }
 
 .contact .contact-form .contact-btn {
@@ -1228,9 +969,14 @@ header {
   cursor: none;
 }
 
-/* contact end */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                     Contact End                                                    */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-/* social */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                       Social                                                       */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 .social-container {
   position: fixed;
   top: 0;
@@ -1313,11 +1059,13 @@ header {
   display: none;
 }
 
-/* social end */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                     Social End                                                     */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-.hero-mob {
-  display: none;
-}
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                        Bonus                                                       */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 .bonus {
   height: 100vh;
@@ -1437,6 +1185,14 @@ header {
   display: none;
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                      Bonus End                                                     */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                       Mobile                                                       */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 @media (max-width: 800px) {
 
   html,
@@ -1446,6 +1202,10 @@ header {
     width: 100dvw;
     overflow-x: hidden;
   }
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                       Header                                                       */
+  /* ------------------------------------------------------------------------------------------------------------------ */
 
   .header-nav {
     display: none;
@@ -1459,6 +1219,14 @@ header {
     margin-top: 1rem;
     display: none;
   }
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                     Header End                                                     */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                        Hero                                                        */
+  /* ------------------------------------------------------------------------------------------------------------------ */
 
   .hero {
     display: none;
@@ -1497,7 +1265,6 @@ header {
   }
 
   .hero-mob .title div {
-    /* border: 3px solid var(--color-gray-200); */
     width: 70%;
     text-align: center;
     border-radius: 50px;
@@ -1510,7 +1277,6 @@ header {
   }
 
   .hero-mob .title div :is(a:hover, a) {
-    /* color: none; */
     color: var(--color-gray-200);
     text-decoration: none;
   }
@@ -1538,11 +1304,17 @@ header {
   .hero-mob .hero-desc p {
     text-align: center;
     font-size: 1rem;
-    /* font-family: var(--font-poppins); */
     color: var(--color-gray-200);
   }
 
-  /* process */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                      Hero End                                                      */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                       Process                                                      */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
   .process {
     height: 100dvh;
     display: flex;
@@ -1605,7 +1377,6 @@ header {
   }
 
   .process-content-mob .process-block.active .title {
-    /* color: #e791bb; */
     color: var(--color-gray-200);
     z-index: 1;
   }
@@ -1634,18 +1405,23 @@ header {
     transition: .4s ease-out;
     flex-wrap: wrap;
     row-gap: 0px;
-    /* font-family: var(--font-poppins); */
   }
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                     Process End                                                    */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                     Soft Skills                                                    */
+  /* ------------------------------------------------------------------------------------------------------------------ */
 
   .soft-skills .soft-skills-list-item {
     font-size: 0.9rem;
     color: var(--color-palevioletred);
     flex-basis: auto;
-    /* Adjust flex-basis for item spacing */
     font-family: var(--font-inknut-antiqua);
     padding: 1rem 0;
     margin: 0 20px;
-    /* Adjust margin for spacing between items */
     width: fit-content;
     display: inline-block;
     list-style: none;
@@ -1659,23 +1435,35 @@ header {
     height: 15px;
   }
 
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                   Soft Skills End                                                  */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                     Hard Skills                                                    */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
   .hard-skills .hard-skills-list-item {
     font-size: 0.9rem;
     color: var(--color-palevioletred);
     flex-basis: auto;
-    /* Adjust flex-basis for item spacing */
     font-family: var(--font-inknut-antiqua);
     padding: 1rem 0;
     margin: 0 20px;
-    /* Adjust margin for spacing between items */
     width: fit-content;
     display: inline-block;
     list-style: none;
     position: relative;
   }
 
-  /* process end */
-  /* projects */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                   Hard Skills End                                                  */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                      Projects                                                      */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
   .projects {
     display: none;
   }
@@ -1684,13 +1472,14 @@ header {
     display: block;
   }
 
-  /* .project-content-desc{
-    font-size: 1.5vh;
-  } */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                    Projects End                                                    */
+  /* ------------------------------------------------------------------------------------------------------------------ */
 
-  /* projects end */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                        About                                                       */
+  /* ------------------------------------------------------------------------------------------------------------------ */
 
-  /* about */
   .about {
     position: relative;
     height: 100%;
@@ -1757,13 +1546,23 @@ header {
     position: absolute;
   }
 
-  /* about end */
-  /* testimonial */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                      About End                                                     */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                     Testimonial                                                    */
+  /* ------------------------------------------------------------------------------------------------------------------ */
   .testimonial-video-ref {
     aspect-ratio: 1;
   }
 
-  /* testimonial end */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                   Testimonial End                                                  */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                       Contact                                                      */
+  /* ------------------------------------------------------------------------------------------------------------------ */
 
   .contact {
     height: 100%;
@@ -1807,6 +1606,14 @@ header {
     cursor: none;
   }
 
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                     Contact End                                                    */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                       Footer                                                       */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
   footer {
     width: 100%;
     height: 75px;
@@ -1819,11 +1626,17 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
+    font-size: 15px;
     color: var(--color-gray-200);
-    /* font-family: var(--font-poppins); */
     width: 100%;
     flex-direction: column;
+  }
+
+  footer .footer-content-container div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 1rem;
   }
 
   footer .footer-content-container .copyright {
@@ -1832,7 +1645,16 @@ header {
 
   footer .footer-content-container .all-rights-reserved {
     margin-right: 0;
+    display: none;
   }
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                       Footer                                                       */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                       Socials                                                      */
+  /* ------------------------------------------------------------------------------------------------------------------ */
 
   .social-container {
     display: none;
@@ -1902,6 +1724,14 @@ header {
     height: 30px;
   }
 
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                     Socials End                                                    */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                        Bonus                                                       */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
   .bonus {
     display: none;
   }
@@ -1915,10 +1745,10 @@ header {
     height: 100%;
     width: 100%;
     padding: 1rem 2rem;
-            min-height: calc(100dvh - 75px);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+    min-height: calc(100dvh - 75px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
   .bonus-mob .bonus-content .head h1 {
@@ -2037,4 +1867,12 @@ header {
   .bonus-mob .bonus-item-controls .bonus-item-controls-pause {
     display: none;
   }
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                                                      Bonus End                                                     */
+  /* ------------------------------------------------------------------------------------------------------------------ */
 }
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/*                                                     Mobile End                                                     */
+/* ------------------------------------------------------------------------------------------------------------------ */

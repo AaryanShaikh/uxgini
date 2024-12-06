@@ -1,4 +1,4 @@
-// #region all projects data
+// #region All Projects Data
 const dataSrc = [
     {
         "imgSrc": "../assets/lead-CRM.webp",
@@ -91,9 +91,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // #region Smooth scroll
     const lenis = new Lenis({
         duration: 1.5,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-        direction: 'vertical', // vertical, horizontal
-        gestureDirection: 'vertical', // vertical, horizontal, both
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+        direction: 'vertical',
+        gestureDirection: 'vertical', 
         smooth: true,
         mouseMultiplier: 1,
         smoothTouch: false,
@@ -112,11 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
         clipPath: 'circle(0% at 50% 0%)',
         ease: "expo.in",
     })
-
-    // #region redirect to home
-    // document.querySelector(".home-nav").addEventListener("click", () => {
-    //     window.location.href = 'index.html';
-    // })
 
     // #region line animation
     let svg = document.querySelector(".line")
