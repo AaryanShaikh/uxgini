@@ -1762,7 +1762,7 @@ header {
   /* testimonial end */
 
   .contact {
-    height: calc(100vh - 75px);
+    height: 100%;
     padding: 1rem 2rem;
     display: flex;
     flex-direction: column;
@@ -1908,7 +1908,7 @@ header {
   }
 
   .bonus-mob .bonus-content {
-    height: calc(100dvh - 75px);
+    height: 100%;
     width: 100%;
     padding: 1rem 2rem;
   }
@@ -1958,6 +1958,7 @@ header {
     border-top-left-radius: 10rem;
     overflow: hidden;
     position: relative;
+    margin: 1rem 0;
   }
 
   .bonus-mob .bonus-content .bottom .left-content .bonus-item video {
@@ -1972,6 +1973,7 @@ header {
     justify-content: center;
     align-items: center;
     padding: 0 2rem;
+    gap: 10px;
   }
 
   .bonus-mob .bonus-content .bottom .center-content div:first-child {
