@@ -1911,6 +1911,10 @@ header {
     height: 100%;
     width: 100%;
     padding: 1rem 2rem;
+            min-height: calc(100dvh - 75px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
   }
 
   .bonus-mob .bonus-content .head h1 {
@@ -1952,7 +1956,7 @@ header {
 
   .bonus-mob .bonus-content .bottom .left-content .bonus-item {
     border: 1px solid;
-    height: 100%;
+    height: 50dvh;
     min-width: 60%;
     border-top-right-radius: 10rem;
     border-top-left-radius: 10rem;
