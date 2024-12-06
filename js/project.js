@@ -195,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
         gsap.from([".hero-mob .hero-desc h1", ".hero-mob .hero-desc p"], { x: 70, opacity: 0, duration: 1, delay: 0.5, stagger: 0.2 })
         gsap.from(".header-nav-list-item", { y: 70, opacity: 0, duration: 1, delay: 0.5, stagger: 0.2 })
         gsap.from(".header-request-btn", { y: 50, opacity: 0, duration: 1, delay: 0.5 })
+        gsap.from(".hero-img",{opacity:0,duration:1})
 
         // #region Hero Img
 
