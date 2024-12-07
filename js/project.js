@@ -4,16 +4,6 @@ window.addEventListener('load', () => {
     localStorage.setItem('navigatingWithinSite', 'false'); // Track internal navigation
 });
 
-// // Track internal navigation on link clicks
-// document.querySelectorAll('a').forEach(link => {
-//     link.addEventListener('click', () => {
-//         // Set navigation flag to true for internal links
-//         const isInternal = link.href.startsWith(window.location.origin);
-//         if (isInternal) {
-//             localStorage.setItem('navigatingWithinSite', 'true');
-//         }
-//     });
-// });
 document.querySelector(".projects-link").addEventListener("click", () => {
     localStorage.setItem('navigatingWithinSite', 'true');
 })
@@ -70,7 +60,7 @@ function handleExtras() {
 
 function checkWidthAndReload() {
     if (document.body.clientWidth < 800) {
-        location.reload();  
+        location.reload();
     }
 }
 
@@ -87,7 +77,42 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("pointer-ring").style.opacity = 1
         handleExtras()
         exeCode()
-    }, localStorage.getItem("siteVisited") == null ? 3010 : 10) // 8010
+        splitText(".process-heading", ".about-title", ".contact-header", ".bonus-header")
+    }, localStorage.getItem("siteVisited") == null ? 3010 : 10)
+
+    function splitText(...targets) {
+        targets.forEach((target) => {
+            const headline = document.querySelector(target);
+            const text = headline.textContent;
+            headline.innerHTML = '';
+
+            text.trim().split('').forEach(char => {
+                const span = document.createElement('span');
+                if (char === ' ') {
+                    const space = document.createElement('span');
+                    space.classList.add('space');
+                    headline.appendChild(space);
+                } else {
+                    span.textContent = char;
+                    headline.appendChild(span);
+                }
+            });
+
+            gsap.from(`${target} span`, {
+                y: 100,
+                opacity: 0,
+                duration: 1.3,
+                stagger: 0.05,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: target,
+                    start: 'top 80%',
+                    once: true,
+                },
+            });
+        })
+
+    }
 
     function exeCode() {
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -155,22 +180,29 @@ document.addEventListener("DOMContentLoaded", function () {
             const cards = document.querySelector(".cards-mobile");
             const totalScrollWidth = cards.scrollWidth - document.querySelector(".projects-mobile").offsetWidth;
 
-            gsap.to(cards, {
-                x: -totalScrollWidth, // scroll to the end of the container
-                ease: "none", // no easing for a linear scroll effect
-                scrollTrigger: {
-                    trigger: cards,
-                    start: "top top",
-                    end: () => `+=${totalScrollHeight}`, // total vertical scroll distance
-                    scrub: true,
-                    pin: true,
-                    pinSpacing: true
-                },
-            });
-        } else {
-            const totalScrollHeight = window.innerHeight * 3;
-            const cards = document.querySelector(".cards");
-            const totalScrollWidth = cards.scrollWidth - window.innerWidth;
+            const updateObjectPosition = (progress) => {
+                const images = cards.querySelectorAll("img");  // Select all the images inside the cards
+                const n = images.length;  // Number of cards
+
+                let value1 = 20;
+                if (progress <= 0.5) {
+                    value1 = progress * 100;  // Scale from 0 to 50
+                } else {
+                    value1 = 50;  // Max out at 50 when progress is greater than 0.5
+                }
+
+                // Second value increases from 0 to 50 between progress 0.5 to 1
+                let value2 = 20;
+                if (progress > 0.5) {
+                    value2 = (progress - 0.5) * 100;  // Scale from 0 to 50 for progress between 0.5 and 1
+                }
+
+                images.forEach((image, index) => {
+                    if (index == 0) return
+
+                    image.style.objectPosition = `${index == 1 ? value1 : value2}% center`;
+                });
+            };
 
             gsap.to(cards, {
                 x: -totalScrollWidth, // scroll to the end of the container
@@ -181,7 +213,56 @@ document.addEventListener("DOMContentLoaded", function () {
                     end: () => `+=${totalScrollHeight}`, // total vertical scroll distance
                     scrub: true,
                     pin: true,
-                    pinSpacing: true
+                    pinSpacing: true,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        updateObjectPosition(progress)
+                    }
+                },
+            });
+        } else {
+            const totalScrollHeight = window.innerHeight * 3;
+            const cards = document.querySelector(".cards");
+            const totalScrollWidth = cards.scrollWidth - window.innerWidth;
+
+            const updateObjectPosition = (progress) => {
+                const images = cards.querySelectorAll("img");  // Select all the images inside the cards
+                const n = images.length;  // Number of cards
+
+                let value1 = 20;
+                if (progress <= 0.5) {
+                    value1 = progress * 100;  // Scale from 0 to 50
+                } else {
+                    value1 = 50;  // Max out at 50 when progress is greater than 0.5
+                }
+
+                // Second value increases from 0 to 50 between progress 0.5 to 1
+                let value2 = 20;
+                if (progress > 0.5) {
+                    value2 = (progress - 0.5) * 100;  // Scale from 0 to 50 for progress between 0.5 and 1
+                }
+
+                images.forEach((image, index) => {
+                    if (index == 0) return
+
+                    image.style.objectPosition = `${index == 1 ? value1 : value2}% center`;
+                });
+            };
+
+            gsap.to(cards, {
+                x: -totalScrollWidth, // scroll to the end of the container
+                ease: "none", // no easing for a linear scroll effect
+                scrollTrigger: {
+                    trigger: cards,
+                    start: "top top",
+                    end: () => `+=${totalScrollHeight}`, // total vertical scroll distance
+                    scrub: true,
+                    pin: true,
+                    pinSpacing: true,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        updateObjectPosition(progress)
+                    }
                 },
             });
         }
@@ -195,7 +276,9 @@ document.addEventListener("DOMContentLoaded", function () {
         gsap.from([".hero-mob .hero-desc h1", ".hero-mob .hero-desc p"], { x: 70, opacity: 0, duration: 1, delay: 0.5, stagger: 0.2 })
         gsap.from(".header-nav-list-item", { y: 70, opacity: 0, duration: 1, delay: 0.5, stagger: 0.2 })
         gsap.from(".header-request-btn", { y: 50, opacity: 0, duration: 1, delay: 0.5 })
-        gsap.from(".hero-img",{opacity:0,duration:1})
+        gsap.from(".hero-img", { opacity: 0, duration: 1 })
+        gsap.from([".hero-left-column span", ".hero-left-column a"], { opacity: 0, duration: 1, x: -50, stagger: 0.2 })
+        gsap.from(".hero-right-column", { opacity: 0, duration: 1, x: 50, stagger: 0.2 })
 
         // #region Hero Img
 
@@ -212,36 +295,60 @@ document.addEventListener("DOMContentLoaded", function () {
         })
 
         // #region reveals
-        gsap.from('.process-heading', {
+
+        gsap.from('.left-content .bonus-item', {
             scrollTrigger: {
-                trigger: ".process-heading",
-                start: "top bottom",
+                trigger: ".left-content",
+                start: "top 80%",
                 once: true
             },
-            y: 100,
+            x: -100,
             opacity: 0,
-            duration: 1
+            duration: 1.3,
+            ease: "power3.out",
+            stagger:0.4
         });
-        gsap.from('.about', {
+
+        gsap.from('.right-content .bonus-item', {
             scrollTrigger: {
-                trigger: ".about",
-                start: "top bottom",
+                trigger: ".right-content",
+                start: "top 80%",
+                once: true
+            },
+            x: 100,
+            opacity: 0,
+            duration: 1.3,
+            ease: "power3.out",
+            stagger: 0.4
+        });
+
+        gsap.from('.center-content *', {
+            scrollTrigger: {
+                trigger: ".center-content",
+                start: "top 80%",
                 once: true
             },
             y: 100,
             opacity: 0,
-            duration: 1
+            duration: 1.3,
+            ease: "power3.out",
+            stagger: 0.2
+        });
+
+        gsap.from('.contact-form', {
+            scrollTrigger: {
+                trigger: ".contact-form",
+                start: "top 80%",
+                once: true
+            },
+            x: -100,
+            opacity: 0,
+            duration: 1.3,
+            ease: "power3.out",
         });
 
         // #region testimonials
-        // gsap.to(".testimonials", {
-        //     scrollTrigger: {
-        //         trigger: ".testimonials",
-        //         start: "top top",
-        //         end: "+=10%",
-        //         pin: true
-        //     }
-        // })
+
         let isplaying = false;
         let btn = document.querySelector(".play-button");
         let video = document.querySelector("#testimonial-video");
@@ -372,14 +479,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Disable the button
             contactBtn.disabled = true;
-        
+
             // Set a timeout to re-enable the button after 2 seconds
-            setTimeout(function() {
-              // Change text back to "Send"
-              contactBtn.textContent = 'Send';
-              
-              // Enable the button
-              contactBtn.disabled = false;
+            setTimeout(function () {
+                // Change text back to "Send"
+                contactBtn.textContent = 'Send';
+
+                // Enable the button
+                contactBtn.disabled = false;
             }, 2000);
 
             // Collect data from input fields
@@ -503,19 +610,19 @@ document.addEventListener("DOMContentLoaded", function () {
         processBlocks.forEach(block => {
             const title = block.querySelector('.title').innerText.trim();
             const desc = block.querySelector('.desc');
-    
+
             if (title === 'Empathize') {
-              desc.innerHTML = 'I immerse in users’ world through interviews, surveys, and competitor analysis to uncover needs, building empathy for design.';
+                desc.innerHTML = 'I immerse in users’ world through interviews, surveys, and competitor analysis to uncover needs, building empathy for design.';
             } else if (title === 'Define') {
-              desc.innerHTML = 'I synthesize insights into user personas, journey maps, and goals, creating actionable steps to guide the design process.';
+                desc.innerHTML = 'I synthesize insights into user personas, journey maps, and goals, creating actionable steps to guide the design process.';
             } else if (title === 'Ideate') {
-              desc.innerHTML = 'I foster creativity through brainstorming, sketching, and mind mapping to explore diverse design solutions and organize user flows.';
+                desc.innerHTML = 'I foster creativity through brainstorming, sketching, and mind mapping to explore diverse design solutions and organize user flows.';
             } else if (title === 'Design') {
-              desc.innerHTML = 'I transform ideas into wireframes and prototypes, focusing on typography, color, and visual hierarchy for effective, polished designs.';
+                desc.innerHTML = 'I transform ideas into wireframes and prototypes, focusing on typography, color, and visual hierarchy for effective, polished designs.';
             } else if (title === 'Test') {
-              desc.innerHTML = 'I refine designs through A/B testing, usability surveys, and user feedback, ensuring the design meets expectations and needs.';
+                desc.innerHTML = 'I refine designs through A/B testing, usability surveys, and user feedback, ensuring the design meets expectations and needs.';
             }
-          });
+        });
     } else {
         gsap.from(".process-content-mob", {
             scrollTrigger: {
@@ -539,19 +646,19 @@ document.addEventListener("DOMContentLoaded", function () {
         processBlocks.forEach(block => {
             const title = block.querySelector('.title').innerText.trim();
             const desc = block.querySelector('.desc');
-    
+
             if (title === 'Empathize') {
-              desc.innerHTML = 'I immerse myself in the user’s world through interviews, surveys, focus groups, and competitor analysis to understand their needs and pain points, building empathy as the foundation of user-centered design';
+                desc.innerHTML = 'I immerse myself in the user’s world through interviews, surveys, focus groups, and competitor analysis to understand their needs and pain points, building empathy as the foundation of user-centered design';
             } else if (title === 'Define') {
-              desc.innerHTML = 'Using insights from the Empathize phase, I define the problem and project goals, creating user personas, empathy maps, and journey maps to turn data into clear, actionable insights that guide the design process.';
+                desc.innerHTML = 'Using insights from the Empathize phase, I define the problem and project goals, creating user personas, empathy maps, and journey maps to turn data into clear, actionable insights that guide the design process.';
             } else if (title === 'Ideate') {
-              desc.innerHTML = 'In the Ideate phase, I foster creativity and collaboration through brainstorming, mind mapping, card sorting, user flows, information architecture, and sketching to explore diverse design possibilities';
+                desc.innerHTML = 'In the Ideate phase, I foster creativity and collaboration through brainstorming, mind mapping, card sorting, user flows, information architecture, and sketching to explore diverse design possibilities';
             } else if (title === 'Design') {
-              desc.innerHTML = 'In the Design phase, I turn selected ideas into paper wireframes and high-fidelity prototypes using tools like Figma. I focus on details like typography, color schemes, and visual hierarchy to create polished, effective designs.';
+                desc.innerHTML = 'In the Design phase, I turn selected ideas into paper wireframes and high-fidelity prototypes using tools like Figma. I focus on details like typography, color schemes, and visual hierarchy to create polished, effective designs.';
             } else if (title === 'Test') {
-              desc.innerHTML = 'Testing is a continuous part of the design process. I use methods like A/B testing, usability surveys, and eye-tracking to gather user feedback and data, ensuring the design meets user needs and expectations.';
+                desc.innerHTML = 'Testing is a continuous part of the design process. I use methods like A/B testing, usability surveys, and eye-tracking to gather user feedback and data, ensuring the design meets user needs and expectations.';
             }
-          });
+        });
     }
 
 

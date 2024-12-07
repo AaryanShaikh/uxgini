@@ -308,7 +308,6 @@ header {
   position: absolute;
   left: 30px;
   top: 85px;
-
 }
 
 .hero .hero-left-column .namaste {
@@ -527,10 +526,33 @@ header {
   font-size: 1.3rem;
   line-height: var(--line-height);
   font-weight: 300;
-  /* font-family: var(--font-inter); */
-  color: var(--color-gray-200);
+  color: #3e001f50;
   width: 100%;
   margin: 2rem 0;
+  background-image: linear-gradient(var(--color-gray-200), var(--color-gray-200));
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-clip: text;
+  animation: about-reveal linear forwards;
+  animation-timeline: view();
+  animation-range-start: cover 20vh;
+}
+
+.about-content p:nth-child(1){
+  animation-range-end: cover 45vh;
+}
+
+.about-content p:nth-child(2) {
+  animation-range-end: cover 46vh;
+}
+.about-content p:nth-child(3) {
+  animation-range-end: cover 47vh;
+}
+
+@keyframes about-reveal {
+  to {
+    background-size: 100% 100%;
+  }
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -711,9 +733,15 @@ footer .footer-content-container .all-rights-reserved {
   color: #89375f;
 }
 
-.process-heading h1 {
+:is(.process-heading,.about-title,.contact-header,.bonus-header) span {
   font-size: 2.5rem;
   font-family: var(--font-inknut-antiqua);
+  display: inline-block;
+}
+
+.space {
+  display: inline-block;
+  width: 10px;
 }
 
 .process-content {
